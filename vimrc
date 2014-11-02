@@ -127,11 +127,11 @@ if has("gui_running")
     set guioptions+=P " Add yanks to the global register
     set fuoptions=maxvert,maxhorz
     set t_Co=256
-    let g:solarized_menu=0
+    "let g:solarized_menu=0
     colorscheme solarized
     set background=dark
 else
-    set background=dark
+    set background=light
     colorscheme solarized
 endif
 
@@ -403,6 +403,17 @@ endfunction
 " LaTeX
 let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*
+
+"autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
+" JSBeautify
+
+autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+
+" C family
+"   formatting options consistent with linux kernel coding style
+autocmd FileType c setlocal shiftwidth=8 tabstop=8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
