@@ -42,7 +42,7 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Call the Pathogen script. Why? Because it's awesome.
+" Call the Pathogen script.
 call pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,7 +59,7 @@ set wildmenu
 set wildmode=list:longest
 
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,*.out
 
 "Always show current position
 set ruler
@@ -101,7 +101,7 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set tm=80
 
 " Highlight the current line
 set cursorline
@@ -133,6 +133,8 @@ if has("gui_running")
 else
     set background=light
     colorscheme solarized
+    "set background=dark
+    "colorscheme bubblegum
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -140,10 +142,6 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-
-" Custom file extention highlighting
-" IQD
-au BufNewFile,BufRead *.iqd set filetype=sql
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -166,9 +164,9 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 500 characters
+" Linebreak on 80 characters
 set lbr
-set tw=500
+set tw=80
 
 set ai "Auto indent
 set si "Smart indent
@@ -197,12 +195,6 @@ map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " Close the current buffer
 map <leader>bd :bd<cr>
@@ -291,7 +283,7 @@ map <leader>ms :mksession! ~/.vim/sessions/s1.vim<CR>
 map <leader>os :source ~/.vim/sessions/s1.vim<CR>
 
 " Open the NERDTree with <C-n>
-map <C-n> :NERDTreeToggle<CR>
+" map <C-n> :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -403,6 +395,9 @@ endfunction
 " LaTeX
 let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*
+"Long lines for latex because I like 1 sentence per line
+autocmd FileType tex setlocal lbr tw=500 spell spelllang=en_gb
+autocmd FileType bib setlocal lbr tw=500 spell spelllang=en_gb
 
 "autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
 " JSBeautify
@@ -419,4 +414,11 @@ autocmd FileType c setlocal shiftwidth=8 tabstop=8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Things to run at the end so that they work as intended
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 set showtabline=1 "Only show tabs if there are more than 1
+set timeoutlen=1000
