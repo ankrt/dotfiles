@@ -1,24 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"    -> Things to run at the end so they work as intended
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -27,9 +7,6 @@ set history=700
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-
-au BufRead,BufNewFile *.pde set filetype=arduino
-au BufRead,BufNewFile *.ino set filetype=arduino
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -94,6 +71,7 @@ set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -164,14 +142,13 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 80 characters
+" Linebreak on 500 characters
 set lbr
-set tw=80
+set tw=500
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -180,7 +157,6 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -236,55 +212,6 @@ set viminfo^=%
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
-
-" Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ \ Col:\ %c
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
-" Map C-Tab to change tabs forwards
-:map <C-Tab> gt
-
-" Map C-S-Tab to change tabs backwards
-:map <C-S-Tab> gT
-
-" Map <F12> to open all buffers in tabs
-:map <F12> :tab sball<CR>
-
-" Create session in default location
-map <leader>ms :mksession! ~/.vim/sessions/s1.vim<CR>
-
-" Open session from default location
-map <leader>os :source ~/.vim/sessions/s1.vim<CR>
-
-" Open the NERDTree with <C-n>
-" map <C-n> :NERDTreeToggle<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -399,17 +326,15 @@ set grepprg=grep\ -nH\ $*
 autocmd FileType tex setlocal lbr tw=500 spell spelllang=en_gb
 autocmd FileType bib setlocal lbr tw=500 spell spelllang=en_gb
 
-"autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
-" JSBeautify
-
 autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 
 " C family
 "   formatting options consistent with linux kernel coding style
-autocmd FileType c setlocal shiftwidth=8 tabstop=8
+autocmd FileType c setlocal shiftwidth=8 tabstop=8 colorcolumn=80
 
+autocmd FileType gitcommit set tw=72
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Things to run at the end so that they work as intended
