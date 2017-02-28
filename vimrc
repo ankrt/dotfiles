@@ -96,6 +96,9 @@ set showcmd
 " Enable syntax highlighting
 syntax enable
 
+colorscheme solarized
+set background=dark
+
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h12
@@ -105,14 +108,6 @@ if has("gui_running")
     set guioptions+=P " Add yanks to the global register
     set fuoptions=maxvert,maxhorz
     set t_Co=256
-    "let g:solarized_menu=0
-    colorscheme solarized
-    set background=dark
-else
-    set background=light
-    colorscheme solarized
-    "set background=dark
-    "colorscheme bubblegum
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -326,14 +321,10 @@ set grepprg=grep\ -nH\ $*
 autocmd FileType tex setlocal lbr tw=500 spell spelllang=en_gb
 autocmd FileType bib setlocal lbr tw=500 spell spelllang=en_gb
 
-autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-
-" C family
-"   formatting options consistent with linux kernel coding style
+" C
 autocmd FileType c setlocal shiftwidth=8 tabstop=8 colorcolumn=80
 
+" Git
 autocmd FileType gitcommit set tw=72
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
