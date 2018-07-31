@@ -342,7 +342,8 @@ autocmd FileType bib setlocal lbr tw=500 spell spelllang=en_gb
 autocmd FileType c setlocal shiftwidth=8 tabstop=8 colorcolumn=80
 
 " Git
-autocmd FileType gitcommit set tw=72
+autocmd FileType gitcommit set tw=72 spell spelllang=en_gb
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Things to run at the end so that they work as intended
