@@ -16,6 +16,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'tfnico/vim-gradle'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -348,6 +351,22 @@ autocmd FileType gitcommit set tw=72 spell spelllang=en_gb
 " Markdown
 autocmd FileType markdown set spell spelllang=en_gb
 
+" JS
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 colorcolumn=80
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Things to run at the end so that they work as intended
