@@ -15,6 +15,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 filetype plugin indent on
@@ -343,6 +344,9 @@ autocmd FileType c setlocal shiftwidth=8 tabstop=8 colorcolumn=80
 
 " Git
 autocmd FileType gitcommit set tw=72 spell spelllang=en_gb
+
+" Markdown
+autocmd FileType markdown set spell spelllang=en_gb
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
