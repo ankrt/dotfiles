@@ -13,6 +13,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
