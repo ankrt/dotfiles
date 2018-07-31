@@ -142,6 +142,7 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+set noundofile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
